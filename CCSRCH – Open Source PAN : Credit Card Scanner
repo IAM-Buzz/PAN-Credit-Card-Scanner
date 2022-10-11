@@ -1,0 +1,49 @@
+CCSRCH – Open Source PAN / Credit Card Scanner
+
+Using CCSRCH
+Usage: ./ccsrch [options] [start path]
+  where [options] are:
+    -b             Add the byte offset into the file of the number
+    -e             Include the Modify Access and Create times in terms
+                   of seconds since the epoch
+    -f             Just output the filename with potential PAN data
+    -j             Include the Modify Access and Create times in terms
+                   of normal date/time
+    -o [filename]  Output the data to the file [filename] vs. standard out
+    -t [1 or 2]    Check if the pattern follows either a Track 1
+                   or 2 format
+    -T             Check for both Track 1 and Track 2 patterns
+    -c             Show a count of hits per file (only when using -o)
+    -s             Show live status information (only when using -o)
+    -l N           Limits the number of results from a single file before going
+                   on to the next file.
+    -n [list]      File extensions to exclude (i.e .dll,.exe)
+    -h             Usage information
+Examples:
+Generic search for credit card data starting in current directory with output to screen:
+
+ccsrch ./
+
+Generic search for credit card data starting in c:\storage with output to mycard.log:
+
+ccsrch -o mycard.log c:\storage
+
+Search for credit card data and check for Track 2 data formats with output to screen:
+
+ccsrch -t 2 ./
+
+Search for credit card data and check for Track 2 data formats with output to file c.log:
+
+ccsrch -t 2 -o c.log ./
+
+Output
+All output is tab delimited with the following order (depending on the parameters):
+
+Source File
+Card Type
+Card Number
+Byte Offset
+Modify Time
+Access Time
+Create Time
+Track Pattern Match
